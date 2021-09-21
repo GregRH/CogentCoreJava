@@ -34,7 +34,7 @@ public class Question5 {
 				System.out.println("Invalid input");
 		}
 		else
-			System.out.println("Invalid input");
+			System.out.println("Enter between minimum of 5 and maximum of 40");
 	}
 	public static float calculateTickets(int price, int num_tickets,char coupon) {
 		float ret;
