@@ -70,8 +70,8 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
 		Employee employeesName[] = new Employee[10];
 		int i=0;
 		for (Employee employee : employees) {
-			if(name.equals(employee.getFirstName())||name.equals(employee.getLastName())) {
-				employeesName[i]=employee;
+			if(employee!=null&&(name.equals(employee.getFirstName())||name.equals(employee.getLastName()))) {
+				employeesName[i++]=employee;
 			}
 		}
 		return employeesName;

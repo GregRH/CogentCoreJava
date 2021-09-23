@@ -31,6 +31,15 @@ public class Main {
 		for (Employee employee3 : employees) {
 			System.out.println(employee3);
 		}
+		Employee names[]=employeeService.getEmployeeByName("abhi");
+		for (int i = 0; i < names.length; i++) {
+			System.out.println(names[i]);
+		}
+		employeeService.deleteAllEmployees();
+		for (Employee employee3 : employees) {
+			System.out.println(employee3);
+		}
+		
 	}
 
 }
