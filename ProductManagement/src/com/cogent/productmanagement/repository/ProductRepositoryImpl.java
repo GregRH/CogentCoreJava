@@ -17,7 +17,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 	}
 	@Override
 	public String addProduct(Product product) {
-		if(counter<products.length) {
+		if(counter+1<products.length) {
 			products[++counter]=product;
 			return "success";
 		}
