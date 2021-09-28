@@ -14,7 +14,16 @@ public class Main {
 	public static void main(String[] args) {
 		EmployeeService employeeService = EmployeeServiceImpl.getInstance();
 		try {
-			Employee employee = employeeService.getEmployeeById("ab002");
+			Employee employeee = new Employee("ab001","abhi","chivate",123.0f);
+			employeeService.addEmployee(employeee);
+		} catch (InvalidSalaryException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		try {
+			Employee employee = employeeService.getEmployeeById("ab001");
+			System.out.println(employeeService.getEmployeeById("ab001"));
 		} catch (IdNotFoundException e) {
 			System.out.println("Caught ID");
 			// TODO Auto-generated catch block
@@ -23,14 +32,8 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		employeeService.addEmployee(new Employee());
-		try {
-			employeeService.getEmployees()[0].setEmpSalary(100);
-		} catch (InvalidSalaryException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println(employeeService.getEmployees()[0].getEmpSalary());
+		
+		
 	}
 	/*public static void main(String[] args) {
 		

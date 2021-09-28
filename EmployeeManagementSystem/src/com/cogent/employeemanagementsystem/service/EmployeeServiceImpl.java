@@ -6,10 +6,11 @@ import com.cogent.employeemanagementsystem.exception.IdNotFoundException;
 import com.cogent.employeemanagementsystem.exception.InvalidNameException;
 import com.cogent.employeemanagementsystem.model.Employee;
 import com.cogent.employeemanagementsystem.repository.EmployeeRepository;
+import com.cogent.employeemanagementsystem.repository.EmployeeRepositoryALImpl;
 import com.cogent.employeemanagementsystem.repository.EmployeeRepositoryImpl;
 
 public class EmployeeServiceImpl implements EmployeeService {
-	EmployeeRepository employeeRepository = EmployeeRepositoryImpl.getIntsance();
+	EmployeeRepository employeeRepository = EmployeeRepositoryALImpl.getIntsance();
 	private static EmployeeService employeeService;
 	private EmployeeServiceImpl(){
 	}
