@@ -1,5 +1,9 @@
 package com.cogent.employeemanagementsystem.repository;
 
+import java.io.IOException;
+
+import com.cogent.employeemanagementsystem.exception.IdNotFoundException;
+import com.cogent.employeemanagementsystem.exception.InvalidNameException;
 import com.cogent.employeemanagementsystem.model.Employee;
 
 public class EmployeeRepositoryImpl implements EmployeeRepository{
@@ -20,17 +24,18 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
 		employees[++counter]=employee;
 		return "success";
 	}
-	public Employee getEmployeeById(String id) {
+	public Employee getEmployeeById(String id) throws IdNotFoundException, IOException {
 		for (Employee employee : employees) {
 			if(employee!=null&&id.equals(employee.getEmployeeId()))
 				return employee;
 		}
-		return null;
+		throw new IdNotFoundException("id not found");
+		
 	}
 	public Employee[] getEmployees() {
 		return employees;
 	}
-	public String deleteEmployeeById(String id) {
+	public String deleteEmployeeById(String id)throws IdNotFoundException, IOException {
 		
 		Employee employee = this.getEmployeeById(id);
 		if (employee!=null) {
@@ -47,7 +52,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
 		}
 			return "Not found";		
 	}
-	public String updateEmployee(String id, Employee employee) {
+	public String updateEmployee(String id, Employee employee)throws IdNotFoundException, IOException {
 		if(this.getIndex(this.getEmployeeById(id))!=-1) {
 			employees[this.getIndex(this.getEmployeeById(id))]=employee;
 			return "Success";
@@ -62,8 +67,8 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
 		return -1;
 	}
 	public void deleteAllEmployees() {
-		while(this.counter>-1)
-			this.deleteEmployeeById(employees[counter--].getEmployeeId());
+		employees=null;
+		counter=-1;
 	}
 	@Override
 	public Employee[] getEmployeeByName(String name) {

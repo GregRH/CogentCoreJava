@@ -1,5 +1,6 @@
 package com.cogent.employeemanagementsystem;
 
+import com.cogent.employeemanagementsystem.exception.InvalidSalaryException;
 import com.cogent.employeemanagementsystem.model.Employee;
 import com.cogent.employeemanagementsystem.model.Manager;
 import com.cogent.employeemanagementsystem.model.ProjectManager;
@@ -9,7 +10,7 @@ public class InheritanceDemo {
 	public InheritanceDemo() {
 		this.a=0;
 	}
-	public static final void main(String[] args) {
+	public static final void main(String[] args) throws InvalidSalaryException {
 		Manager manager = new Manager("ab001","abhi","chivate",1200.0f,123,"PA");
 		Manager manager2 = new Manager();
 		Employee manager3 = new Manager();
