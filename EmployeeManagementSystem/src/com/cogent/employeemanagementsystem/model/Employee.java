@@ -1,13 +1,37 @@
 package com.cogent.employeemanagementsystem.model;
 
+import java.util.Objects;
+
 import com.cogent.employeemanagementsystem.exception.InvalidSalaryException;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.ToString;
 
 //@Data
 //@AllArgsConstructor
-public class Employee {
+@ToString
+public class Employee 
+//implements Comparable<Employee> 
+{
+	@Override
+	public int hashCode() {
+		return Objects.hash(address, empSalary, employeeId, firstName, lastName);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Employee other = (Employee) obj;
+		return Objects.equals(address, other.address)
+				&& Float.floatToIntBits(empSalary) == Float.floatToIntBits(other.empSalary)
+				&& Objects.equals(employeeId, other.employeeId) && Objects.equals(firstName, other.firstName)
+				&& Objects.equals(lastName, other.lastName);
+	}
 	public float calculateSalary() {
 		return empSalary+500;
 	}
@@ -65,5 +89,10 @@ public class Employee {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+//	@Override
+//	public int compareTo(Employee o) {
+//		// TODO Auto-generated method stub
+//		return this.employeeId.compareTo(o.employeeId);
+//	}
 	
 }

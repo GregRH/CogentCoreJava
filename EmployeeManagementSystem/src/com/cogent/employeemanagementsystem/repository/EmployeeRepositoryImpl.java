@@ -1,6 +1,7 @@
 package com.cogent.employeemanagementsystem.repository;
 
 import java.io.IOException;
+import java.util.List;
 
 import com.cogent.employeemanagementsystem.exception.IdNotFoundException;
 import com.cogent.employeemanagementsystem.exception.InvalidNameException;
@@ -32,8 +33,11 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
 		throw new IdNotFoundException("id not found");
 		
 	}
-	public Employee[] getEmployees() {
+	/*public Employee[] getEmployees() {
 		return employees;
+	}*/
+	public List<Employee> getEmployees(){
+		return null;
 	}
 	public String deleteEmployeeById(String id)throws IdNotFoundException, IOException {
 		

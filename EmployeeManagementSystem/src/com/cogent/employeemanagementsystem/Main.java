@@ -1,6 +1,7 @@
 package com.cogent.employeemanagementsystem;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.cogent.employeemanagementsystem.exception.IdNotFoundException;
@@ -13,9 +14,15 @@ import com.cogent.employeemanagementsystem.service.EmployeeServiceImpl;
 public class Main {
 	public static void main(String[] args) {
 		EmployeeService employeeService = EmployeeServiceImpl.getInstance();
+		ArrayList<Employee> employees = (ArrayList<Employee>) employeeService.getEmployees();
 		try {
 			Employee employeee = new Employee("ab001","abhi","chivate",123.0f);
 			employeeService.addEmployee(employeee);
+			employeeService.addEmployee(new Employee("ab002","abhi","chivate",123.0f));
+			employeeService.addEmployee(new Employee("ab002","abhi","chivate",123.0f));
+			employeeService.addEmployee(new Employee("ab003","abhi","chivate",123.0f));
+			employeeService.addEmployee(new Employee("ab004","abhi","chivate",123.0f));
+			employeeService.addEmployee(new Employee("ab005","abhi","chivate",123.0f));
 		} catch (InvalidSalaryException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -24,6 +31,10 @@ public class Main {
 		try {
 			Employee employee = employeeService.getEmployeeById("ab001");
 			System.out.println(employeeService.getEmployeeById("ab001"));
+			System.out.println(employeeService.deleteEmployeeById("ab001"));
+			System.out.println(employeeService.deleteEmployeeById("ab001"));
+			System.out.println(employeeService.getEmployeeById("ab001"));
+			
 		} catch (IdNotFoundException e) {
 			System.out.println("Caught ID");
 			// TODO Auto-generated catch block
@@ -33,7 +44,15 @@ public class Main {
 			e.printStackTrace();
 		}
 		
+		employees = (ArrayList<Employee>) employeeService.getEmployees();
+		printEmployees(employees);
 		
+	}
+	public static void printEmployees(ArrayList<Employee> employees) {
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		for (Employee employee : employees) {
+			System.out.println(employee);
+		}
 	}
 	/*public static void main(String[] args) {
 		

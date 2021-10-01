@@ -77,5 +77,14 @@ public class ProductRepositoryALImpl implements ProductRepository {
 		products = null;
 
 	}
+	@Override
+	public boolean isProductExist(String id) {
+		// TODO Auto-generated method stub
+		for (Product product : products) {
+			if(id.equals(product.getProductId()))
+				return true;
+		}
+		return false;
+	}
 
 }

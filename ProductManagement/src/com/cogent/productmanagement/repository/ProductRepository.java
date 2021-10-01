@@ -10,4 +10,6 @@ public interface ProductRepository {
 	public Product[] getProducts();
 	public String deleteProductsById(String id) throws InvalidProductIdException;
 	public void deleteAllProducts();
+	public boolean isProductExist(String id);
+	
 }
