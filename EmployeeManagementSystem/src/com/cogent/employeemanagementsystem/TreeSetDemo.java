@@ -1,7 +1,7 @@
 package com.cogent.employeemanagementsystem;
 
 import java.util.Comparator;
-import java.util.TreeSet;
+import java.util.TreeMap;
 
 import com.cogent.employeemanagementsystem.exception.InvalidSalaryException;
 import com.cogent.employeemanagementsystem.model.Employee;
@@ -23,11 +23,11 @@ public class TreeSetDemo {
 				return o1.getEmployeeId().compareTo(o2.getEmployeeId());
 			}
 		};
-		TreeSet<Employee> employees = new TreeSet<>(comparator2);
+		TreeMap<Employee,Integer> employees = new TreeMap<>(comparator2);
 		try {
-			employees.add(new Employee("ab001", "abhi", "chivate", 1000.0f));
-			employees.add(new Employee("ab005", "advik", "chivate", 1000.0f));
-			employees.add(new Employee("ab0010", "abhinandan", "chivate", 1000.0f));
+			employees.put(new Employee("ab001", "abhi", "chivate", 1000.0f),1000);
+			employees.put(new Employee("ab005", "advik", "chivate", 1000.0f),1000);
+			employees.put(new Employee("ab0010", "abhinandan", "chivate", 1000.0f),1000);
 			
 		} catch (InvalidSalaryException e) {
 			// TODO Auto-generated catch block
