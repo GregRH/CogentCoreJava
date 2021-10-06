@@ -1,6 +1,7 @@
 package com.cogent.ecommerce.service;
 
 
+import com.cogent.ecommerce.dto.Category;
 import com.cogent.ecommerce.repository.CategoryRepository;
 import com.cogent.ecommerce.repository.CategoryRepositoryImpl;
 
@@ -12,5 +13,30 @@ public class CategoryServiceImpl implements CategoryService {
 		if(categoryService==null)
 			categoryService=new CategoryServiceImpl();
 		return categoryService;
+	}
+	@Override
+	public boolean addCategory(Category category) {
+		// TODO Auto-generated method stub
+		return repository.addCategory(category);
+	}
+	@Override
+	public boolean deleteCategoryById(String Id) {
+		// TODO Auto-generated method stub
+		return repository.deleteCategoryById(Id);
+	}
+	@Override
+	public void deleteAll() {
+		// TODO Auto-generated method stub
+		repository.deleteAll();
+	}
+	@Override
+	public Category getCategoryById(String Id) {
+		// TODO Auto-generated method stub
+		return repository.getCategoryById(Id);
+	}
+	@Override
+	public boolean updateCategory(String Id, Category category) {
+		// TODO Auto-generated method stub
+		return repository.updateCategory(Id, category);
 	}
 }

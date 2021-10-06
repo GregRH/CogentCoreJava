@@ -1,5 +1,11 @@
 package com.cogent.ecommerce.service;
 
-public interface InventoryService {
+import com.cogent.ecommerce.dto.Inventory;
 
+public interface InventoryService {
+	public boolean addInventory(Inventory inventory);
+	public boolean deleteInventoryById(String Id);
+	public void deleteAll();
+	public Inventory getInventoryById(String Id);
+	public boolean updateInventory(String Id, Inventory inventory);
 }

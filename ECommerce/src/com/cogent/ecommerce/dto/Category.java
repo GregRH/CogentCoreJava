@@ -2,10 +2,13 @@ package com.cogent.ecommerce.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-@Data
+@Data@ToString
 @AllArgsConstructor
+@NoArgsConstructor
 public class Category {
-	private String Cat_ID;
-	private String Cat_Name;
+	private String catID;
+	private String catName;
 }

@@ -1,12 +1,17 @@
 package com.cogent.ecommerce.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-@Data
+@Data@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
-	private String User_ID;
-	private String User_Name;
-	private String Password;
-	private String Email_ID;
-	private String Role_ID;
+	private String userId;
+	private String userName;
+	private String password;
+	private String emailId;
+	private String roleId;
 }

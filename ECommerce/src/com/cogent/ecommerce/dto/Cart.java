@@ -2,16 +2,19 @@ package com.cogent.ecommerce.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-@Data
+@Data@ToString
 @AllArgsConstructor
+@NoArgsConstructor
 public class Cart {
-	private String cart_ID;
-	private String User_ID;
-	private String Inv_ID;
-	private String Product_ID;;
-	private int Product_qty;
-	private double Product__price;
-	private double Total_Price;
+	private String cartID;
+	private String userID;
+	private String invID;
+	private String productID;;
+	private int productQty;
+	private double productPrice;
+	private double totalPrice;
 	
 }

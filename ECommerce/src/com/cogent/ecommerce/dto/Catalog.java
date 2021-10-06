@@ -2,13 +2,16 @@ package com.cogent.ecommerce.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-@Data
+@Data@ToString
 @AllArgsConstructor
+@NoArgsConstructor
 public class Catalog {
-	private String Product_ID;
-	private String Product_Name;
-	private String Cat_ID;
-	private String Product_Description;
-	private String Product_Image;
+	private String productID;
+	private String productName;
+	private String catID;
+	private String productDescription;
+	private String productImage;
 }
