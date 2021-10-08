@@ -9,8 +9,15 @@ public class OrdersServiceImpl implements OrdersService {
 	private static OrdersService orderService;
 	private OrdersServiceImpl() {}
 	public static OrdersService getInstance() {
-		if(orderService==null)
-			orderService=new  OrdersServiceImpl();
+		if(orderService==null) {
+			synchronized (OrdersServiceImpl.class) {
+				if(orderService==null) {
+					orderService=new  OrdersServiceImpl();
+					return orderService;
+				}
+			}
+		}
+		
 		return orderService;
 	}
 	@Override

@@ -6,8 +6,15 @@ public class InventoryRepositoryImpl implements InventoryRepository {
 	private static InventoryRepository inventoryRepository;
 	private InventoryRepositoryImpl() {}
 	public static InventoryRepository getInstance() {
-		if(inventoryRepository==null)
-			inventoryRepository=new InventoryRepositoryImpl();
+		if(inventoryRepository==null) {
+			synchronized (InventoryRepositoryImpl.class) {
+				if(inventoryRepository==null) {
+					inventoryRepository=new InventoryRepositoryImpl();
+					return inventoryRepository;
+				}
+			}
+		}
+		
 		return inventoryRepository;
 	}
 	@Override

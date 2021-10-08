@@ -9,8 +9,15 @@ public class CartServiceImpl implements CartService {
 	private static CartService cartService;
 	private CartServiceImpl() {}
 	public static CartService getInstance() {
-		if(cartService==null)
-			cartService=new CartServiceImpl();
+		if(cartService==null) {
+			synchronized (CartServiceImpl.class) {
+				if(cartService==null) {
+					cartService=new CartServiceImpl();
+					return cartService;
+				}
+			}
+		}
+		
 		return cartService;
 	}
 	@Override

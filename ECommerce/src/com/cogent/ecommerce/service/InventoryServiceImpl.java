@@ -9,8 +9,15 @@ public class InventoryServiceImpl implements InventoryService {
 	private static InventoryService inventoryService;
 	private InventoryServiceImpl() {}
 	public static InventoryService getInstance() {
-		if(inventoryService==null)
-			inventoryService=new InventoryServiceImpl();
+		if(inventoryService==null) {
+			synchronized (InventoryServiceImpl.class) {
+				if(inventoryService==null) {
+					inventoryService=new InventoryServiceImpl();
+					return inventoryService;
+				}
+			}
+		}
+		
 		return inventoryService;
 	}
 	@Override

@@ -9,8 +9,15 @@ public class RoleServiceImpl implements RoleService {
 	private static RoleService roleService;
 	private RoleServiceImpl() {}
 	public static RoleService getInstance() {
-		if(roleService==null)
-			roleService=new RoleServiceImpl();
+		if(roleService==null) {
+			synchronized (RoleServiceImpl.class) {
+				if(roleService==null) {
+					roleService=new RoleServiceImpl();
+					return roleService;
+				}
+			}
+		}
+		
 		return roleService;
 	}
 	@Override

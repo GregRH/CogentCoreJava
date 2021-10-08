@@ -9,8 +9,15 @@ public class UserServiceImpl implements UserService {
 	public static UserService userService;
 	private UserServiceImpl() {}
 	public static UserService getInstance() {
-		if(userService==null)
-			userService=new UserServiceImpl();
+		if(userService==null) {
+			synchronized (UserServiceImpl.class) {
+				if(userService==null) {
+					userService=new UserServiceImpl();
+					return userService;
+				}
+			}
+		}
+		
 		return userService;
 	}
 	@Override

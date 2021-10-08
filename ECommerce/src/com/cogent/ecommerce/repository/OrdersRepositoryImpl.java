@@ -6,8 +6,15 @@ public class OrdersRepositoryImpl implements OrdersRepository {
 	private static OrdersRepository ordersRepository;
 	private OrdersRepositoryImpl() {}
 	public static OrdersRepository getInstance() {
-		if(ordersRepository==null)
-			ordersRepository=new OrdersRepositoryImpl();
+		if(ordersRepository==null) {
+			synchronized (OrdersRepositoryImpl.class) {
+				if(ordersRepository==null) {
+					ordersRepository=new OrdersRepositoryImpl();
+					return ordersRepository;
+				}
+			}
+		}
+		
 		return ordersRepository;
 	}
 	@Override

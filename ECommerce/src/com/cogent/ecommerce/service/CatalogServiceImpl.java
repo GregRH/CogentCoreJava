@@ -9,8 +9,15 @@ public class CatalogServiceImpl implements CatalogService {
 	private static CatalogService catalogService;
 	private CatalogServiceImpl() {}
 	public static CatalogService getInstance() {
-		if(catalogService==null)
-			catalogService=new CatalogServiceImpl();
+		if(catalogService==null) {
+			synchronized (CatalogServiceImpl.class) {
+				if(catalogService==null) {
+					catalogService=new CatalogServiceImpl();
+					return catalogService;
+				}
+			}
+		}
+		
 		return catalogService;
 	}
 	@Override

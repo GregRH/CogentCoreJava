@@ -10,8 +10,15 @@ public class CategoryServiceImpl implements CategoryService {
 	private static CategoryService categoryService;
 	private CategoryServiceImpl() {}
 	public static CategoryService getInstance() {
-		if(categoryService==null)
-			categoryService=new CategoryServiceImpl();
+		if(categoryService==null) {
+			synchronized (CategoryServiceImpl.class) {
+				if(categoryService==null) {
+					categoryService=new CategoryServiceImpl();
+					return categoryService;
+				}
+			}
+		}
+		
 		return categoryService;
 	}
 	@Override

@@ -6,8 +6,15 @@ public class CategoryRepositoryImpl implements CategoryRepository {
 	public static CategoryRepository categoryRepository;
 	private CategoryRepositoryImpl() {}
 	public static CategoryRepository getInstance() {
-		if(categoryRepository==null)
-			categoryRepository=new CategoryRepositoryImpl();
+		if(categoryRepository==null) {
+			synchronized (CategoryRepositoryImpl.class) {
+				if(categoryRepository==null) {
+					categoryRepository=new CategoryRepositoryImpl();
+					return categoryRepository;
+				}
+			}
+		}
+		
 		return categoryRepository;
 	}
 	@Override

@@ -7,8 +7,14 @@ public class CartRepositoryImpl implements CartRepository {
 	private static CartRepository cartRepository;
 	private CartRepositoryImpl() {}
 	public static CartRepository getInstance() {
-		if(cartRepository==null)
-			cartRepository=new CartRepositoryImpl();
+		if(cartRepository==null) {
+			synchronized (CartRepositoryImpl.class) {
+				if(cartRepository==null) {
+					cartRepository=new CartRepositoryImpl();
+					return cartRepository;
+				}
+			}
+		}
 		return cartRepository;
 	}
 	@Override

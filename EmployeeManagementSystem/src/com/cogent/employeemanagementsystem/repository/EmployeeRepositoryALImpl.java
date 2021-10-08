@@ -12,12 +12,32 @@ import com.cogent.employeemanagementsystem.exception.IdNotFoundException;
 import com.cogent.employeemanagementsystem.model.Employee;
 
 public class EmployeeRepositoryALImpl implements EmployeeRepository {
+	public static void main(String[] args) {
+		Thread thread = new Thread(()->{
+			EmployeeRepository repository = EmployeeRepositoryALImpl.getIntsance();
+			System.out.println(repository.hashCode());
+		});
+		thread.start();
+		Thread thread2 = new Thread(()->{
+			EmployeeRepository repository = EmployeeRepositoryALImpl.getIntsance();
+			System.out.println(repository.hashCode());
+		});
+		thread2.start();
+	}
+	
+	
 	private Set<Employee> employees = new HashSet<>();
 	private static EmployeeRepository employeeRepository;
 	private EmployeeRepositoryALImpl() {}
-	public static EmployeeRepository getIntsance() {
-		if(employeeRepository==null)
-			employeeRepository = new EmployeeRepositoryALImpl();
+	public /*synchronized*/ static EmployeeRepository getIntsance() {
+		if(employeeRepository==null) {	
+			synchronized (EmployeeRepositoryALImpl.class) {
+				if(employeeRepository==null) {
+					employeeRepository = new EmployeeRepositoryALImpl();
+					return employeeRepository;
+				}
+			}
+		}
 		return employeeRepository;
 	}
 	
