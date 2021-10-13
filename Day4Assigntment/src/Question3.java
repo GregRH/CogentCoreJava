@@ -11,24 +11,18 @@ public class Question3 {
 		}
 		printMatrix(intMatrix);
 		printSpiral(intMatrix);
-	}
-	public static void printSpiral(int[][] matrix) {
-		next(0,0,matrix);
-	}
-	public static int next(int i, int j, int[][] matrix) {
-		if(j<matrix[0].length&&i<matrix.length-1) {
-			System.out.print("["+matrix[i][j]+"]");
-			return next(i,j+1,matrix);
-		}
-		else if(i<matrix[0].length) {
-			//System.out.println();
-			return next(i+1,j-1,matrix);
-		}else if(j>=0&&i==matrix.length-1) {
-			System.out.print("["+matrix[i][j]+"]");
-			return next(i,j-1,matrix);
-		}
 		
-		return -1;
+	}
+	private static int ai=0;
+	private static int aj=0;
+	public static void printSpiral(int[][] matrix) {
+		
+		printBackwards(matrix[0]);
+	}
+	public static void printBackwards(int[] arr) {
+		for(int i = arr.length-1;i>=0;i--) {
+			System.out.print(arr[i]);
+		}
 	}
 	public static  void printMatrix(int[][] matrix) {
 		
