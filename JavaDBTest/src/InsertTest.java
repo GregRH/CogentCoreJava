@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 
 
-public class Test {
+public class InsertTest {
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
