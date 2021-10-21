@@ -1,0 +1,23 @@
+package com.cogent.emsjdbc.repository;
+
+
+import java.util.List;
+
+import com.cogent.emsjdbc.dto.Employee;
+
+
+
+public interface EmployeeRepository {
+
+	public String addEmployee(Employee employee );
+	public String deleteEmployeeById(String id) ;
+	public void deleteAllEmployees();
+	public Employee getEmployeeById(String id) ;
+	public List<Employee> getEmployees();
+	public String updateEmployee(String id, Employee employee);
+	public boolean isEmployeeExists(String id);
+	
+	
+	
+}
+
