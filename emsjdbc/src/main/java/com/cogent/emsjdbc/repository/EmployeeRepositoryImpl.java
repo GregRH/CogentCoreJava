@@ -8,21 +8,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.stereotype.Repository;
 
 import com.cogent.emsjdbc.dto.Employee;
-
-import utils.DBUtils;
-
+import com.cogent.emsjdbc.utils.DBUtils;
+@Repository
 public class EmployeeRepositoryImpl implements EmployeeRepository {
-	
-	DBUtils dbutils = DBUtils.getInstance();
-	private static EmployeeRepository employeeRepository;
-	private EmployeeRepositoryImpl() {}
-	public static EmployeeRepository getInstance() {
-		if(employeeRepository==null)
-			employeeRepository= new EmployeeRepositoryImpl();
-		return employeeRepository;
-	}
+	@Autowired
+	DBUtils dbutils;
 	public String addEmployee(Employee employee) {
 		Connection con = dbutils.getConnection();
 		String insertStatement = "insert into employeeDatabase values(?,?,?,?,?,?)";
@@ -83,7 +80,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 		dbutils.closeConnection(con);
 	}
 
-	public Employee getEmployeeById(String id) {
+	public Optional<Employee> getEmployeeById(String id) {
 		// TODO Auto-generated method stub
 		Connection con = dbutils.getConnection();
 		String preparedQuery = "SELECT * from employeeDatabase WHERE empId = ? LIMIT 1";
@@ -101,18 +98,18 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 				e.setEmpSalary(rs.getFloat(6));
 				rs.close();
 				pt.close();
-				dbutils.closeConnection(con);
-				return e;
+				
+				return Optional.ofNullable(e);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		dbutils.closeConnection(con);
-		return null;
+		}finally {
+		dbutils.closeConnection(con);}
+		return Optional.empty();
 	}
 
-	public List<Employee> getEmployees() {
+	public Optional<List<Employee>> getEmployees() {
 		// TODO Auto-generated method stub
 		List<Employee> employees = new ArrayList<Employee>();
 		Connection con = dbutils.getConnection();
@@ -124,21 +121,23 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 			ResultSet rs = st.executeQuery(query);
 			while(rs.next()) {
 				Employee emp = new Employee();
-				emp.setEmpId(rs.getString(1));
-				emp.setEmpFirstName(rs.getString(2));
-				emp.setEmpLastname(rs.getString(3));
-				emp.setDoj(rs.getDate(4));
-				emp.setDob(rs.getDate(5));
-				emp.setEmpSalary(rs.getFloat(6));
+				emp.setEmpId(rs.getString("empId"));
+				emp.setEmpFirstName(rs.getString("empFirstName"));
+				emp.setEmpLastname(rs.getString("empLastName"));
+				emp.setDoj(rs.getDate("doj"));
+				emp.setDob(rs.getDate("dob"));
+				emp.setEmpSalary(rs.getFloat("empSalary"));
 				employees.add(emp);
 			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			dbutils.closeConnection(con);
 		}
 		
-		return employees;
+		return Optional.ofNullable(employees);
 	}
 
 	public String updateEmployee(String id, Employee employee) {
@@ -172,13 +171,14 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 			boolean flag =rt.next();
 			rt.close();
 			pt.close();
-			dbutils.closeConnection(con);
 			return flag;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		dbutils.closeConnection(con);
+		finally {
+			dbutils.closeConnection(con);
+		}
 		return false;
 	}
 

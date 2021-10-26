@@ -22,7 +22,7 @@ public class Test {
 		long totalTimeParallel = parallelEndTime-parallelStartTime;
 		System.out.println("Biggest by sequential : " + biggieSequence + " time taken : " + totalTimeseq);
 		System.out.println("Biggest by parallel : " + biggieParallel + " time taken: " + totalTimeParallel);
-
+		
 	}
 
 }
