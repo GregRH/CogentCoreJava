@@ -1,5 +1,6 @@
 package com.cogent.springecommerce.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,43 +13,49 @@ import com.cogent.springecommerce.repository.OrdersRepository;
 public class OrdersServiceImpl implements OrdersService {
 	@Autowired
 	private OrdersRepository repository;// = OrdersRepositoryImpl.getInstance();
-//	private static OrdersService orderService;
-//	private OrdersServiceImpl() {}
-//	public static OrdersService getInstance() {
-//		if(orderService==null) {
-//			synchronized (OrdersServiceImpl.class) {
-//				if(orderService==null) {
-//					orderService=new  OrdersServiceImpl();
-//					return orderService;
-//				}
-//			}
-//		}
-//		
-//		return orderService;
-//	}
+
 	@Override
 	public String addOrders(Orders orders) {
-		// TODO Auto-generated method stub
-		return repository.addOrders(orders);
+		Orders added = repository.save(orders);
+		if(added!=null)
+			return "success";
+		else
+			return "fail";
 	}
+
 	@Override
 	public String deleteOrdersById(String Id) {
-		// TODO Auto-generated method stub
-		return repository.deleteOrdersById(Id);
+		if(repository.existsById(Id)) {
+			repository.deleteById(Id);
+			return "Success";
+		}
+		return "Id not found";
 	}
+
 	@Override
 	public void deleteAll() {
-		// TODO Auto-generated method stub
 		repository.deleteAll();
+		
 	}
+
 	@Override
 	public Optional<Orders> getOrdersById(String Id) {
-		// TODO Auto-generated method stub
-		return repository.getOrdersById(Id);
+		Orders data = repository.getById(Id);
+		return Optional.ofNullable(data);
 	}
+
 	@Override
 	public String updateOrders(String Id, Orders orders) {
-		// TODO Auto-generated method stub
-		return repository.addOrders(orders);
+		if(repository.existsById(Id)) {
+			repository.save(orders);
+			return "Success";
+		}
+		return "ID not found";
 	}
+
+	@Override
+	public Optional<List<Orders>> getAllOrders() {
+		return Optional.ofNullable(repository.findAll());
+	}
+	
 }

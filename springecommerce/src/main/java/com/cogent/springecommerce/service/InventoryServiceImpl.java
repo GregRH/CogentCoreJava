@@ -1,5 +1,6 @@
 package com.cogent.springecommerce.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,43 +13,49 @@ import com.cogent.springecommerce.repository.InventoryRepository;
 public class InventoryServiceImpl implements InventoryService {
 	@Autowired
 	private InventoryRepository repository;// = InventoryRepositoryImpl.getInstance();
-//	private static InventoryService inventoryService;
-//	private InventoryServiceImpl() {}
-//	public static InventoryService getInstance() {
-//		if(inventoryService==null) {
-//			synchronized (InventoryServiceImpl.class) {
-//				if(inventoryService==null) {
-//					inventoryService=new InventoryServiceImpl();
-//					return inventoryService;
-//				}
-//			}
-//		}
-//		
-//		return inventoryService;
-//	}
+
 	@Override
 	public String addInventory(Inventory inventory) {
-		// TODO Auto-generated method stub
-		return repository.addInventory(inventory);
+		Inventory added = repository.save(inventory);
+		if(added!=null)
+			return "success";
+		else
+			return "fail";
 	}
+
 	@Override
 	public String deleteInventoryById(String Id) {
-		// TODO Auto-generated method stub
-		return repository.deleteInventoryById(Id);
+		if(repository.existsById(Id)) {
+			repository.deleteById(Id);
+			return "Success";
+		}
+		return "Id not found";
 	}
+
 	@Override
 	public void deleteAll() {
-		// TODO Auto-generated method stub
 		repository.deleteAll();
+		
 	}
+
 	@Override
 	public Optional<Inventory> getInventoryById(String Id) {
-		// TODO Auto-generated method stub
-		return repository.getInventoryById(Id);
+		Inventory data = repository.getById(Id);
+		return Optional.ofNullable(data);
 	}
+
 	@Override
 	public String updateInventory(String Id, Inventory inventory) {
-		// TODO Auto-generated method stub
-		return repository.updateInventory(Id, inventory);
+		if(repository.existsById(Id)) {
+			repository.save(inventory);
+			return "Success";
+		}
+		return "ID not found";
 	}
+
+	@Override
+	public Optional<List<Inventory>> getAllInventory() {
+		return Optional.ofNullable(repository.findAll());
+	}
+
 }

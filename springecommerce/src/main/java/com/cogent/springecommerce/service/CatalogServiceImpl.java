@@ -1,5 +1,6 @@
 package com.cogent.springecommerce.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,43 +12,49 @@ import com.cogent.springecommerce.repository.CatalogRepository;
 public class CatalogServiceImpl implements CatalogService {
 	@Autowired
 	private CatalogRepository repository;// = CatalogRepositoryImpl.getInstance();
-//	private static CatalogService catalogService;
-//	private CatalogServiceImpl() {}
-//	public static CatalogService getInstance() {
-//		if(catalogService==null) {
-//			synchronized (CatalogServiceImpl.class) {
-//				if(catalogService==null) {
-//					catalogService=new CatalogServiceImpl();
-//					return catalogService;
-//				}
-//			}
-//		}
-//		
-//		return catalogService;
-//	}
+
 	@Override
 	public String addCatalog(Catalog catalog) {
-		// TODO Auto-generated method stub
-		return repository.addCatalog(catalog);
+		Catalog added = repository.save(catalog);
+		if(added!=null)
+			return "success";
+		else
+			return "fail";
 	}
+
 	@Override
 	public String deleteCatalogById(String Id) {
-		// TODO Auto-generated method stub
-		return repository.deleteCatalogById(Id);
+		if(repository.existsById(Id)) {
+			repository.deleteById(Id);
+			return "Success";
+		}
+		return "Id not found";
 	}
+
 	@Override
 	public void deleteAll() {
-		// TODO Auto-generated method stub
 		repository.deleteAll();
+		
 	}
+
 	@Override
 	public Optional<Catalog> getCatalogById(String Id) {
-		// TODO Auto-generated method stub
-		return repository.getCatalogById(Id);
+		Catalog cat = repository.getById(Id);
+		return Optional.ofNullable(cat);
 	}
+
 	@Override
 	public String updateCatalog(String Id, Catalog catalog) {
-		// TODO Auto-generated method stub
-		return repository.updateCatalog(Id, catalog);
+		if(repository.existsById(Id)) {
+			repository.save(catalog);
+			return "Success";
+		}
+		return "ID not found";
 	}
+
+	@Override
+	public Optional<List<Catalog>> getAllCatalog() {
+		return Optional.ofNullable(repository.findAll());
+	}
+
 }

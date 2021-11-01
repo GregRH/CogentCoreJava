@@ -1,13 +1,14 @@
 package com.cogent.springecommerce.repository;
 
-import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.cogent.springecommerce.dto.Category;
-
-public interface CategoryRepository {
-	public String addCategory(Category category);
-	public String deleteCategoryById(String Id);
-	public void deleteAll();
-	public Optional<Category> getCategoryById(String Id);
-	public String updateCategory(String Id, Category category);
+@Repository
+public interface CategoryRepository extends JpaRepository<Category, String> {
+//	public String addCategory(Category category);
+//	public String deleteCategoryById(String Id);
+//	public void deleteAll();
+//	public Optional<Category> getCategoryById(String Id);
+//	public String updateCategory(String Id, Category category);
 }

@@ -1,5 +1,6 @@
 package com.cogent.springecommerce.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.cogent.springecommerce.dto.Category;
@@ -10,4 +11,5 @@ public interface CategoryService {
 	public void deleteAll();
 	public Optional<Category> getCategoryById(String Id);
 	public String updateCategory(String Id, Category category);
+	public Optional<List<Category>> getAllCategory();
 }

@@ -1,5 +1,6 @@
 package com.cogent.springecommerce.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,44 +12,49 @@ import com.cogent.springecommerce.repository.CartRepository;
 @Service
 public class CartServiceImpl implements CartService {
 	@Autowired
-	private CartRepository repository;// = CartRepositoryImpl.getInstance();
-//	private static CartService cartService;
-//	private CartServiceImpl() {}
-//	public static CartService getInstance() {
-//		if(cartService==null) {
-//			synchronized (CartServiceImpl.class) {
-//				if(cartService==null) {
-//					cartService=new CartServiceImpl();
-//					return cartService;
-//				}
-//			}
-//		}
-//		
-//		return cartService;
-//	}
+	private CartRepository repository;
+
 	@Override
 	public String addCart(Cart cart) {
-		// TODO Auto-generated method stub
-		return repository.addCart(cart);
+		Cart added = repository.save(cart);
+		if(added!=null)
+			return "success";
+		else
+			return "fail";
 	}
+
 	@Override
 	public String deleteCartById(String Id) {
-		// TODO Auto-generated method stub
-		return repository.deleteCartById(Id);
+		if(repository.existsById(Id)) {
+			repository.deleteById(Id);
+			return "Success";
+		}
+		return "Id not found";
 	}
+
 	@Override
 	public void deleteAll() {
-		// TODO Auto-generated method stub
 		repository.deleteAll();
 	}
+
 	@Override
 	public Optional<Cart> getCartById(String Id) {
-		// TODO Auto-generated method stub
-		return repository.getCartById(Id);
+		Cart data = repository.getById(Id);
+		return Optional.ofNullable(data);
 	}
+
 	@Override
 	public String updateCart(String Id, Cart cart) {
-		// TODO Auto-generated method stub
-		return repository.updateCart(Id, cart);
+		if(repository.existsById(Id)) {
+			repository.save(cart);
+			return "Success";
+		}
+		return "ID not found";
 	}
+
+	@Override
+	public Optional<List<Cart>> getAllCart() {
+		return Optional.ofNullable(repository.findAll());
+	}
+
 }

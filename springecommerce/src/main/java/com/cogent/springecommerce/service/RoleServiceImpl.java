@@ -1,5 +1,6 @@
 package com.cogent.springecommerce.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,44 +13,49 @@ import com.cogent.springecommerce.repository.RoleRepository;
 public class RoleServiceImpl implements RoleService {
 	@Autowired
 	private RoleRepository repository;// = RoleRepositoryImpl.getInstance();
-//	private static RoleService roleService;
-//	private RoleServiceImpl() {}
-//	public static RoleService getInstance() {
-//		if(roleService==null) {
-//			synchronized (RoleServiceImpl.class) {
-//				if(roleService==null) {
-//					roleService=new RoleServiceImpl();
-//					return roleService;
-//				}
-//			}
-//		}
-//		
-//		return roleService;
-//	}
+
 	@Override
 	public String addRole(Role role) {
-		// TODO Auto-generated method stub
-		return repository.addRole(role);
+		Role added = repository.save(role);
+		if(added!=null)
+			return "success";
+		else
+			return "fail";
 	}
+
 	@Override
 	public String deleteRoleById(String id) {
-		// TODO Auto-generated method stub
-		return repository.deleteRoleById(id);
+		if(repository.existsById(id)) {
+			repository.deleteById(id);
+			return "Success";
+		}
+		return "Id not found";
 	}
+
 	@Override
 	public String updateRole(String id, Role role) {
-		// TODO Auto-generated method stub
-		return repository.updateRole(id, role);
+		if(repository.existsById(id)) {
+			repository.save(role);
+			return "Success";
+		}
+		return "ID not found";
 	}
+
 	@Override
 	public void deleteAll() {
-		// TODO Auto-generated method stub
 		repository.deleteAll();
 		
 	}
+
 	@Override
 	public Optional<Role> getRoleById(String id) {
-		// TODO Auto-generated method stub
-		return repository.getRoleById(id);
+		Role data = repository.getById(id);
+		return Optional.ofNullable(data);
 	}
+
+	@Override
+	public Optional<List<Role>> getAllRole() {
+		return Optional.ofNullable(repository.findAll());
+	}
+
 }

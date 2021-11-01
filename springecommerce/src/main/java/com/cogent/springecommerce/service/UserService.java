@@ -1,5 +1,6 @@
 package com.cogent.springecommerce.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.cogent.springecommerce.dto.User;
@@ -10,4 +11,5 @@ public interface UserService {
 	public void deleteAll();
 	public Optional<User> getUserById(String Id);
 	public String updateUser(String Id, User user);
+	public Optional<List<User>> getAllUser();
 }
