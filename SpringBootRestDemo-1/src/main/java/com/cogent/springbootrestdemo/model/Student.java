@@ -1,0 +1,21 @@
+package com.cogent.springbootrestdemo.model;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Entity
+@Table(name="StudentDetails")
+public class Student {
+	@Id
+	private int student_id;
+	private String student_name;
+	private int score;
+}
