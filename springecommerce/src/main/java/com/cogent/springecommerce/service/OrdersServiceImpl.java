@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cogent.springecommerce.dto.Orders;
+import com.cogent.springecommerce.exception.InvalidIdException;
 import com.cogent.springecommerce.repository.OrdersRepository;
 
 @Service
@@ -40,8 +41,9 @@ public class OrdersServiceImpl implements OrdersService {
 
 	@Override
 	public Optional<Orders> getOrdersById(String Id) {
-		Orders data = repository.getById(Id);
-		return Optional.ofNullable(data);
+		
+		return repository.findById(Id);
+		
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.cogent.productexample.dto.Login;
 import com.cogent.productexample.dto.Product;
 import com.cogent.productexample.exception.ResourceNotFoundException;
 import com.cogent.productexample.service.ProductService;
@@ -15,6 +16,14 @@ import com.cogent.productexample.service.ProductService;
 public class ProductController2 {
 	@Autowired
 	ProductService productService;
+	@GetMapping("/loginD")
+    public String logingPage(Model m)
+    {
+    	Login l=new Login();
+    	m.addAttribute("log",l);
+    	
+    	return "login";
+    }
 	@GetMapping("/")
 	public String viewHomePage(Model model) {
 		model.addAttribute("listProduct", productService.findAllProducts());

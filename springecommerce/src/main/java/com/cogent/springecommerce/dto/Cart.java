@@ -5,15 +5,17 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-@Data//@ToString
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -27,7 +29,9 @@ public class Cart {
 	private int productQty;
 	private double productPrice;
 	private double totalPrice;
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Orders>orders;
+//	@OneToMany(cascade = CascadeType.ALL)
+//	//@JoinColumn(name="cart_id", referencedColumnName = "cartID")
+//	//@JsonIgnoreProperties("cart")
+//	private List<Orders>orders;
 	
 }

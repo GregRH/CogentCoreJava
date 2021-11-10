@@ -2,15 +2,17 @@ package com.cogent.springecommerce.dto;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-@Data//@ToString
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -25,6 +27,8 @@ public class Orders {
 	private double productPrice;
 	private double totalPrice;
 	private double grandTotalPrice;
-	@ManyToOne
-	private Cart cart;
+//	@ManyToOne
+//	@JoinColumn(name="cart_id")
+//	//@JsonIgnoreProperties("orders")
+//	private Cart cart;
 }
