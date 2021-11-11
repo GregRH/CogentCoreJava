@@ -1,0 +1,20 @@
+p{
+	font-size:medium;
+	color:crimson;
+	font-style: italic;
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight: 200;
+	text-align:center;
+}
+h1{
+	text-align:right;
+	text-decoration:overline;
+	text-transform:uppercase;
+}
+body
+{
+	background-color: pink;
+	background-image:url("img.jpg");
+	background-repeat:
+}
+
