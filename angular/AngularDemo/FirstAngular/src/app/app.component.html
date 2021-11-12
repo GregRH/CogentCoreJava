@@ -1,0 +1,15 @@
+<html>
+	<body>
+		<p>Hello</p>
+		<div *ngFor='let data of listItems'>
+			<ul>
+				<li>{{data.ID}}</li>
+				<li>{{data.Name}}</li>
+			</ul>
+		</div>
+		<font color=red size=7>Calling sub component</font>
+		<app-first-component></app-first-component>
+		<font color=teal size=7>Calling second sub component</font>
+		<app-second-component></app-second-component>	
+	</body>
+</html>
