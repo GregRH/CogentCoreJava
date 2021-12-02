@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body bgcolor="magenta">
+	<h1 style="color: red; text-align: center">Marriage.com</h1>
+	<img src="images/marriage.jpg" width="400" height="100">
+	<form action="marriageurl" method="POST"
+		onsbumit="return validate(this)">
+		<table>
+			<tr>
+				<td>person name::</td>
+				<td><input type="text" name="pname"><span
+					style="color: red" id="nameErr"></span></td>
+			</tr>
+			<tr>
+				<td>Person Age::</td>
+				<td><input type="text" name="page"><span
+					style="color: red" id="ageErr"></span></td>
+			</tr>
+			<tr>
+				<td>Person Gender::</td>
+				<td><input type="radio" name="gender" value="M">Male <input
+					type="radio" name="gender" value="F">Female</td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Check Marriage Eligibility"></td>
+				<td><input type="reset" value="cancel"></td>
+			</tr>
+		</table>
+		<input type="hidden" name="vflag" value="no" />
+	</form>
+
+</body>
+</html>
