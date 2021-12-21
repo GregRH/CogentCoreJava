@@ -1,4 +1,4 @@
-package com.cogent.productexample.controller;
+/*package com.cogent.productexample.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -54,4 +54,4 @@ public class ProductController2 {
 	        productService.deleteData(id);
 	        return "redirect:/";
 	    }
-}
+}*/

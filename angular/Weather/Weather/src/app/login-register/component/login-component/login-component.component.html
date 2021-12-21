@@ -1,0 +1,72 @@
+<div class="container">
+	<div class="row" 	*ngIf="login">
+		<div class="col col-3"></div>
+		<div class="col col-6">
+			<div class="card text-center">
+				<div class="card-header">
+					login
+				</div>
+			<div class="card-body">
+				<p style="color: red;">{{loginerror}}</p>
+				<form [formGroup]="loginForm" (ngSubmit)="loginFormSubmit()">
+					<div class="form-group">
+						<label for="exampleInputEmail1">Email address</label>
+						<input type="email" class="form-control" id="exampleInputEmail1"
+						 aria-descibedby="emailHelp" placeholder="Enter your email" formControlName="email">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">Password</label>
+						<input type="password" class="form-control" id="exampleInputPassword1"
+						placeholder="Password" formControlName="password"> 
+					</div>
+					<br>
+					<button type="submit" class="btn btn-primary btn-block">Login</button>
+				</form>
+			</div>	
+				<div class="card-footer text-muted">
+					Not a registered user?
+					<p (click)="registerUser(0)" style="color: black;cursor: pointer;">register me</p>
+				</div>
+			</div>
+			<div class="row" 	*ngIf="!login">
+				<div class="col col-3"></div>
+				<div class="col col-6">
+					<div class="card text-center">
+						<div class="card-header">
+							Register
+						</div>
+						<div class="card-body">
+							<form [formGroup]="registerForm" (ngSubmit)="registerFormSubmit()">
+								<div class="form-group">
+									<label for"exampleInputEmail1">Name</label>
+									<input type="text" class="form-control" id="exampleInputEmail1"
+										aria-descibedby="emailHelp" placeholder="Enter Name" formControlName="name">
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">Email address</label>
+									<input type="email" class="form-control" id="exampleInputEmail1"
+										aria-descibedby="emailHelp" placeholder="Enter Email" formControlName="email">
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">Password</label>
+									<input type="password" class="form-control" id="exampleInputPassword1"
+										placeholder="Password" formControlName="password">
+								</div>
+								<br>
+								<button type="submit" class="btn btn-outline-primary btn-block">Register</button>
+							</form>
+						</div>	
+						<div class="card-footer text-muted">
+							Already registered user?
+							<p (click)="registerUser(1)" style="color: black;cursor: pointer;">login me</p>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+	</div>
+
+	
+</div>

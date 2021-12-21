@@ -1,4 +1,4 @@
-package com.cogent.productexample.config;
+/*package com.cogent.productexample.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -27,11 +27,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	 * http://localhost:8080/
 	 * http://localhost:8080/emp
 	 * http://localhost:8080/newmep
-	 */
-		// authorication
+	 *//*
+		// authorication/
 		@Override
 		public void configure(HttpSecurity http) throws Exception {
-			http.antMatcher("/**").authorizeRequests().anyRequest().
+/*			http.antMatcher("/**").authorizeRequests().anyRequest().
 			hasRole("USER")
 					.and().formLogin().loginPage("/loginD")
 					.failureUrl("/loginD?error=1").
@@ -40,4 +40,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 					.logoutSuccessUrl("/showNewProductForm");
 
 		}
-}
+}*/

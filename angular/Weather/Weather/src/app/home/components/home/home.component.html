@@ -1,0 +1,25 @@
+<div class="container">
+	<div class="row">
+		<h1>Cotacted User</h1>
+		<p>
+		</p>
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col"></th>
+					<th scope="col">Name</th>
+					<th scope="col">Email</th>
+					<th scope="col">Message</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let con of contactedUsers">
+					<th scope="row">1</th>
+					<td>{{con.name}}</td>
+					<td>{{con.email}}</td>
+					<td>{{con.msg}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
